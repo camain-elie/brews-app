@@ -1,0 +1,72 @@
+//@import '~material-design-icons/iconfont/material-icons.css';
+
+@import '../assets/colors.scss';
+
+.search{
+    height: 140px;
+    border-radius: 8px;
+    background-image: url("../assets/backgroundImg.jpg");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+
+    &__input{
+        width: 65%;
+        height: 50px;
+        border-radius: 4px;
+        background: white;
+        margin: auto;
+        display: flex;
+        padding: 3px;
+        
+        form{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            
+            *{
+                font-family: 'Roboto', sans-serif;
+            }
+        }
+
+        input{
+            width: 80%;
+            padding: 0 7px;
+            border: none;
+
+
+            color: $font-color;
+            font-size: 0.9rem;
+
+            &:focus{
+                outline: none;
+            }
+
+            &::placeholder{
+                color: $clear-font-color;
+            }
+        }
+
+        button{
+            height: 100%;
+            width: 120px;
+            background: $background-color;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 1.2rem;
+        }
+    }
+
+    &__icon{
+        color: $clear-font-color;
+        position: relative;
+        top: -11px;
+        margin-right: 5px;
+        margin-left: 5px;
+
+        &--text{
+            color: $font-color;
+        }
+    }
+}

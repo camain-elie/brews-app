@@ -1,0 +1,17 @@
+@import '../assets/colors.scss';
+
+.header{
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    color: $title-color;
+    font-weight: 300;
+    text-align: left;
+
+    p{
+        margin: 1rem 0;
+    }
+
+    span{
+        font-weight: 700;
+    }
+}
