@@ -4,6 +4,16 @@ import Search from './Search';
 import Options from './Options';
 import Breweries from './Breweries';
 
+
+/*const getBreweryData = async (breweryId) => {
+    //const response = await fetch(`${URL}${breweryId}`);
+    const response = await fetch(`https://api.allorigins.win/raw?url=https://api.openbrewerydb.org/breweries/9387`);
+    console.log(response);
+    const data = await response.json();
+    console.log(data);
+
+}*/
+
 class SearchBrew extends Component {
 
     handleSearch (e, value) {
@@ -11,6 +21,11 @@ class SearchBrew extends Component {
         console.log('search');
         console.log(value);
     }
+
+    /*componentDidMount(){
+        console.log('did mount');
+        getBreweryData();
+    }*/
 
     render(){
 
