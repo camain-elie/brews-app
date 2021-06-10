@@ -13,7 +13,7 @@ function Search (props) {
                 <p className={`search__icon ${value ? 'search__icon--text' : ''} material-icons-outlined`}>sports_bar</p>
 
                 <form onSubmit={e => props.handleSearch(e, value)}>
-                    <input type="text" value={value} onChange={e => setValue(e.target.value)} placeholder="Titlle, companies, expertise or benefits" />
+                    <input type="text" value={value} onChange={e => setValue(e.target.value)} placeholder="Complete name or part of the name of the brewery" />
                     <button type="submit" >Search</button>
                 </form>
             </div>

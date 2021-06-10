@@ -24,28 +24,28 @@ const URL = "https://api.openbrewerydb.org/breweries/";
 const getBreweryData = async (breweryId) => {
     const response = await fetch(`${URL}${breweryId}`);
     const data = await response.json();
-    console.log(data);
     return data;
 }
 
 
 class Brewery extends Component {
-    /*constructor(props){
+    constructor(props){
         super(props);
 
         
 
         this.state = {
-            breweryId: useParams(),
+            isLoading: true,
         }
-    }*/
+    }
 
     componentDidMount(){
         const breweryId = this.props.match.params.breweryId;
-        console.log(breweryId);
-        console.log('did mount');
         getBreweryData(breweryId)
-        .then(res => console.log(res))
+        .then(res => {
+            this.setState({ data: res, isLoading: false })
+            console.log(res)
+        })
         .catch(error => console.error(error));
     }
 
@@ -53,12 +53,82 @@ class Brewery extends Component {
 
         //console.log(this.state.breweryId);
 
+
+        const state = this.state;
+        /*let renderedWebsite;
+
+        if(!state.isLoading){
+            renderedWebsite = <iframe title="Brewery's website" width="300" height="200" src={state.data.website_url }></iframe>;
+            //console.log(renderedWebsite)
+            //renderedWebsite.console.log = function(){}
+            //renderedWebsite.contentWindow.console.log = function() {};
+        }*/
+
         return(
             <div className="brewery">
-            Brewery
-            {/*breweryId*/}
-            <Link to="/">Go back</Link>
-        </div>
+            
+                {state.isLoading ? '' :
+                    (<div className="brewery__side">
+                        <Link to="/">
+                            <p className="brewery__back"><span className="brewery__back-icon material-icons">trending_flat</span>Back to search</p>
+                        </Link>
+
+                        <div className="brewery__contact">
+                            <h2>HOW TO CONTACT US</h2>
+                            {state.data.phone && 
+                                <p>{state.data.phone}</p>
+                            }
+                            {state.data.website_url &&
+                                <a href={state.data.website_url} target="_blank" rel='noreferrer noopener' >{state.data.website_url}</a>
+                            }
+                            <div className="brewery__address">
+                                {state.data.street && <p>{state.data.street}</p>}
+                                {state.data.address_2 && <p>{state.data.address_2}</p>}
+                                {state.data.address_3 && <p>{state.data.address_3}</p>}
+                                {(state.data.postal_code || state.data.city) && <p>{state.data.postal_code + ' ' + state.data.city}</p>}
+                                <p>{state.data.state ? state.data.state + ', ' : ''}{state.data.country}</p>
+                            </div>
+                        </div>
+
+                        <div className="brewery__content">
+
+                            <div className="brewery__name">
+                                <h1>{state.data.name}</h1>
+                                <p className="brewery__type">{state.data.brewery_type}</p>
+                            </div>
+
+                            <p className="brewery__icon-text"><span className="material-icons">time</span>{state.data.updated_at}</p>
+
+                            <div className="" >
+                            
+                            </div>
+
+                            <div className="brewery__description">
+                                <p className="brewery__description-note">Note : as the API does not provide a description for each brewery, the following description will be the same for every brewery.</p>
+                                <p>This brewery company is an independent craft brewery located in Beer City in the Hoppy District.
+                                    It is Beer City's first brewery, and also the oldest brewery of the country !</p>
+                                <p>We produce around 1200 gallons a month, although we sell onlly about half of that. The second half seems to always be missing, due to... hum... mysterious reasons 😇</p>
+                                <p>I will have to be honnest here, my imagination just ran out and I am getting fed up of writting so... I hope nobody is reading that mutch.
+                                    Cause this won't get any more interesting. And I am sure you have better things to do. Won't you go clean the dishes, or make some fantastic projects ?
+                                    Really, instead of reading all of that, you could have accomplished your dreams.</p>
+                                <p>Well maybe not, but still. Go play the piano, write a poem or better, enjoy a beer in the company of your beloved friends ! What ? Don't have any friends ?
+                                    Hum... lucky you ! I happen to just have a few beers in the fridge and I'm only a few thousands miles away, so... come over dude ! In the meanwhile,
+                                    have a great day ! See ya !
+                                </p>
+                                <p className="brewery__description-note">
+                                    Pfew... that was exausting !
+                                </p>
+                            </div>
+                            
+
+                            {/*renderedWebsite*/}
+                        </div>
+                    </div>)
+
+                }
+
+
+            </div>
         )
     }
 }
