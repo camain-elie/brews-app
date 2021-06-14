@@ -3,12 +3,31 @@
 .brewery{
     text-align: left;
 
-    &__description, &__type, &__name, &__address, &__phone{
+    &__description, &__type, &__name, &__address, &__phone, &__contact *{
         color: $font-color;
     }
 
     &__side{
         font-family: 'Popping', sans-serif;
+    }
+
+    &__contact{
+        *{
+            margin: 20px 0;
+        }
+
+
+        h2{
+            color: $clear-font-color;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+    }
+
+    &__address{
+        p{
+            margin: 0.3rem 0;
+        }
     }
 
     &__content{
@@ -39,6 +58,14 @@
         margin: auto 30px;
     }
 
+    &__date{
+        color: $clear-font-color;
+        font-size: 0.9rem;
+        .brewery__icon{
+            font-size: 1.1rem;
+        }
+    }
+
     &__description{
 
         p{
@@ -49,5 +76,11 @@
         &--note{
             color: $clear-font-color;
         }
+    }
+
+    &__icon{
+        position: relative;
+        top: 0.2rem;
+        margin: 0;
     }
 }
