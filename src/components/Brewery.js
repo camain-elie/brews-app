@@ -97,14 +97,14 @@ class Brewery extends Component {
                                 <p className="brewery__type">{state.data.brewery_type}</p>
                             </div>
 
-                            <p className="brewery__icon-text"><span className="material-icons">time</span>{state.data.updated_at}</p>
+                            <p className="brewery__icon-text"><span className="material-icons">schedule</span> {state.data.updated_at}</p>
 
                             <div className="" >
                             
                             </div>
 
                             <div className="brewery__description">
-                                <p className="brewery__description-note">Note : as the API does not provide a description for each brewery, the following description will be the same for every brewery.</p>
+                                <p className="brewery__description--note">Note : as the API does not provide a description for each brewery, the following description will be the same for every brewery.</p>
                                 <p>This brewery company is an independent craft brewery located in Beer City in the Hoppy District.
                                     It is Beer City's first brewery, and also the oldest brewery of the country !</p>
                                 <p>We produce around 1200 gallons a month, although we sell onlly about half of that. The second half seems to always be missing, due to... hum... mysterious reasons 😇</p>
@@ -115,7 +115,7 @@ class Brewery extends Component {
                                     Hum... lucky you ! I happen to just have a few beers in the fridge and I'm only a few thousands miles away, so... come over dude ! In the meanwhile,
                                     have a great day ! See ya !
                                 </p>
-                                <p className="brewery__description-note">
+                                <p className="brewery__description--note">
                                     Pfew... that was exausting !
                                 </p>
                             </div>

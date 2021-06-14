@@ -1,0 +1,53 @@
+@import '../assets/colors.scss';
+
+.brewery{
+    text-align: left;
+
+    &__description, &__type, &__name, &__address, &__phone{
+        color: $font-color;
+    }
+
+    &__side{
+        font-family: 'Popping', sans-serif;
+    }
+
+    &__content{
+        font-family: 'Roboto', sans-serif;
+    }
+
+    &__name{
+        display: flex;
+        align-content: center;
+
+        
+    }
+
+
+    h1{
+        margin: 0;
+    }
+
+    &__type{
+        text-transform: capitalize;
+        border: 1px solid $font-color;
+        border-radius: 4px;
+        padding: 6px;
+        height: 20px;
+        min-width: 80px;
+        text-align: center;
+        width: min-content;
+        margin: auto 30px;
+    }
+
+    &__description{
+
+        p{
+            font-weight: 400;
+            text-align: justify;
+        }
+
+        &--note{
+            color: $clear-font-color;
+        }
+    }
+}
