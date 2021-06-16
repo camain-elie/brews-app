@@ -5,5 +5,16 @@
 .App {
   text-align: center;
   margin: auto;
-  width: 80%;
+  padding: 0 15px;
+}
+
+a{
+  text-decoration: none;
+}
+
+@media(min-width: 800px){
+  .App{
+    width: 80%;
+    max-width: 1300px;
+  }
 }

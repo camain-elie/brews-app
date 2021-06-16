@@ -1,5 +1,7 @@
 @import '../assets/colors.scss';
 
+
+
 .brewery{
     text-align: left;
 
@@ -9,6 +11,19 @@
 
     &__side{
         font-family: 'Popping', sans-serif;
+        margin-bottom: 50px;
+    }
+
+    &__back{
+        color: $background-color;
+        text-decoration: none;
+
+        &-icon{
+            position: relative;
+            top: 0.4rem;
+            transform: rotate(180deg);
+            margin-right: 10px;
+        }
     }
 
     &__contact{
@@ -24,6 +39,11 @@
         }
     }
 
+    &__link{
+        color: $background-color;
+        word-break: break-word;
+    }
+
     &__address{
         p{
             margin: 0.3rem 0;
@@ -37,6 +57,7 @@
     &__name{
         display: flex;
         align-content: center;
+        flex-wrap: wrap;
 
         
     }
@@ -55,7 +76,7 @@
         min-width: 80px;
         text-align: center;
         width: min-content;
-        margin: auto 30px;
+        margin: auto 0 auto 30px;
     }
 
     &__date{
@@ -82,5 +103,26 @@
         position: relative;
         top: 0.2rem;
         margin: 0;
+    }
+}
+
+@media (min-width: 800px) {
+    .brewery{
+        //background: red;
+        &__page{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__side{
+            width: 30%;
+            min-width: 250px;
+            max-width: 400px;
+            margin-right: 20px;
+        }
+
+        &__content{
+            min-width: 55%;
+        }
     }
 }

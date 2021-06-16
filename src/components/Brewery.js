@@ -45,7 +45,6 @@ class Brewery extends Component {
         getBreweryData(breweryId)
         .then(res => {
             this.setState({ data: res, isLoading: false })
-            console.log(res)
         })
         .catch(error => console.error(error));
     }
@@ -56,17 +55,6 @@ class Brewery extends Component {
 
 
         const state = this.state;
-        
-        if(state.data){
-            console.log(Date.parse(state.data.updated_at)/1000/3600/24);
-            console.log(howLongAgo(state.data.updated_at))
-        }
-        
-        let exDate = new Date();
-        exDate.setDate(exDate.getDate() - 8000);
-        console.log(exDate);
-
-        console.log(howLongAgo( exDate ));
         
         /*let renderedWebsite;
 
@@ -81,7 +69,8 @@ class Brewery extends Component {
             <div className="brewery">
             
                 {state.isLoading ? '' :
-                    (<div className="brewery__side">
+                    (<div className="brewery__page">
+                    <div className="brewery__side">
                         <Link to="/">
                             <p className="brewery__back"><span className="brewery__back-icon material-icons">trending_flat</span>Back to search</p>
                         </Link>
@@ -92,7 +81,7 @@ class Brewery extends Component {
                                 <p className=""><span className="material-icons brewery__icon">call</span> {state.data.phone}</p>
                             }
                             {state.data.website_url &&
-                                <a href={state.data.website_url} target="_blank" rel='noreferrer noopener' >{state.data.website_url}</a>
+                                <a className="brewery__link" href={state.data.website_url} target="_blank" rel='noreferrer noopener' >{state.data.website_url}</a>
                             }
                             <div className="brewery__address">
                                 {state.data.street && <p>{state.data.street}</p>}
@@ -102,8 +91,9 @@ class Brewery extends Component {
                                 <p>{state.data.state ? state.data.state + ', ' : ''}{state.data.country}</p>
                             </div>
                         </div>
-
-                        <div className="brewery__content">
+                    </div>
+                    
+                    <div className="brewery__content">
 
                             <div className="brewery__name">
                                 <h1>{state.data.name}</h1>
@@ -136,7 +126,8 @@ class Brewery extends Component {
 
                             {/*renderedWebsite*/}
                         </div>
-                    </div>)
+                        </div>
+                    )
 
                 }
 

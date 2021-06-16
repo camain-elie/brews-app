@@ -14,6 +14,13 @@ import Breweries from './Breweries';
 
 }*/
 
+const getBrews = async () => {
+    const response = await fetch("https://api.openbrewerydb.org/breweries");
+    console.log(response);
+    const json = await response.json();
+    console.log(json);
+}
+
 class SearchBrew extends Component {
 
     handleSearch (e, value) {
@@ -22,10 +29,11 @@ class SearchBrew extends Component {
         console.log(value);
     }
 
-    /*componentDidMount(){
+    componentDidMount(){
         console.log('did mount');
-        getBreweryData();
-    }*/
+        getBrews();
+        
+    }
 
     render(){
 

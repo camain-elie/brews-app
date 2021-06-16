@@ -1,0 +1,76 @@
+@import '../assets/colors.scss';
+
+.options{
+    font-family: 'Poppins', sans-serif;
+    width: 400px;
+
+    &__name{
+
+    }
+
+    &__input{
+        box-shadow: 2px 2px 6px 2px rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        display: flex;
+        padding: 5px;
+        
+        *{
+            margin: auto;
+        }
+
+        input{
+            width: 80%;
+            height: 30px;
+            border: none;
+
+            &::placeholder{
+                color: $clear-font-color;
+            }
+
+            &:focus{
+                outline: none;
+            }
+        }
+    }
+
+    &__radio{
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        color: $font-color;
+        
+        div{
+            margin: 15px 15px 0 15px;
+        }
+
+        input{
+            margin-right: 20px;
+        }
+    }
+
+    &__icon{
+        position: relative;
+        //top: 6px;
+        $color: red;
+    }
+
+    &__label{
+        color: $clear-font-color;
+
+        &--text{
+            color: $font-color;
+        }
+    }
+
+    &__position{
+        color: $background-color;
+        cursor: pointer;
+
+        &:hover{
+            color: darken($background-color, 10%);
+        }
+        &:active{
+            color: darken($background-color, 15%);
+        }
+    }
+}
