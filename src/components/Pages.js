@@ -1,35 +1,80 @@
 import './Pages.scss';
 
 function Pages(props){
+    
+    if(props.totalPages < 2){
+        return(
+            <div className="pages"></div>
+        );
+    }
 
     const pageMin = 1;
     const pageMax = props.totalPages;
     const currentPage = props.currentPage;
 
-    let buttonTab = [{char: "<", action: () => console.log("+")}];
+    let buttonTab = [];
+
+
+    /*char: <p className={`material-icons pages__icon
+            ${currentPage === 1 ? "pages__button--disabled" : ""}`}>
+                chevron_left
+            </p>,
+        action: () => console.log("+")
+        */
 
     for(let i = 1; i<=pageMax; i++){
         if((i===pageMin) || (i===pageMax) || (i >= currentPage-1 && i<= currentPage+1)){
-            buttonTab.push({char: i, action: () => console.log(i)});
+            buttonTab.push(i);
         }else{
             if((i===currentPage-2) || (i===currentPage+2)){
-                buttonTab.push({char: "...", action: () => console.log("")});
+                buttonTab.push("...");
             }
         }
 
     }
 
-    buttonTab.push({char: ">", action: () => console.log("<")});
+    /*buttonTab.push({
+        char: <p className={`material-icons pages__button
+            ${currentPage === pageMax ? "pages__button--disabled" : ""}`}>
+                chevron_right
+            </p>,
+        action: () => console.log("<")});*/
 
     return(
-        <div>
+        <div className="pages">
+
+            <div className={`pages__arrow${currentPage === pageMin ? "--disabled" : ""}`}
+                onClick={() => props.changeOnePage(-1)} >
+                <p className="material-icons">
+                    chevron_left
+                </p>
+            </div>  
+
             {buttonTab.map((item, index) => {
+                if(item === "..."){
+                    return(
+                    <div className="pages__more" key={index} >
+                        <p>{item}</p>
+                    </div>
+                    )
+                }
+
                 return(
-                    <div key={index} onClick={item.action} >
-                        {item.char}{item.char == currentPage ? "*" : ""}
+                    <div className={`pages__number ${item === currentPage ? "pages__number--current" : ""}`}
+                        key={index}
+                        onClick={() => props.changeToPage(item)}
+                    >
+                        <p>{item}</p>
                     </div>
                 )
-            })}       
+            })}
+
+            <div className={`pages__arrow${currentPage === pageMax ? "--disabled" : ""}`}
+                onClick={() => props.changeOnePage(1)} >
+                <p className="material-icons">
+                    chevron_right
+                </p>
+            </div>     
         </div>
     );
 }

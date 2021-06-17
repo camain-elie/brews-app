@@ -16,7 +16,6 @@ import Breweries from './Breweries';
 
 const getBrews = async () => {
     const response = await fetch("https://api.openbrewerydb.org/breweries");
-    console.log(response);
     const json = await response.json();
     console.log(json);
 }
