@@ -4,6 +4,8 @@ import Search from './Search';
 import Options from './Options';
 import Breweries from './Breweries';
 
+import './SearchBrew.scss';
+
 
 /*const getBreweryData = async (breweryId) => {
     //const response = await fetch(`${URL}${breweryId}`);
@@ -21,9 +23,21 @@ import Breweries from './Breweries';
 }*/
 
 class SearchBrew extends Component {
+    constructor(props){
+        super(props);
+
+        this.handleSearch = this.handleSearch.bind(this);
+
+        this.state = {
+            breweryName: '',
+            location: '',
+        };
+
+    }
 
     handleSearch (e, value) {
         e.preventDefault();
+        this.setState({ breweryName: value });
         console.log('search');
         console.log(value);
     }
@@ -38,12 +52,16 @@ class SearchBrew extends Component {
 
 
         return(
-            <div className="searchjob">
+            <div className="search-brew">
                 
                 <Search handleSearch={this.handleSearch} />
-                <Options />
-                <Breweries />
+                <div className="search-brew__content" >
 
+                    <Options />
+                    <Breweries name={this.state.breweryName} />
+
+                </div>
+        
             </div>
         );
     }
