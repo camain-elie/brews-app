@@ -15,13 +15,15 @@ class Breweries extends Component{
 
         this.changeOnePage = this.changeOnePage.bind(this);
         this.changeToPage = this.changeToPage.bind(this);
-        console.log(this.props.name)
 
         this.state = {
             currentPage: 1,
             totalPages: 1,
             breweryList: [],
             breweryName: this.props.name,
+            breweryType: this.props.type,
+            breweryLocation: this.props.location,
+            userPosition: this.props.position,
         }
     }
 
@@ -56,12 +58,18 @@ class Breweries extends Component{
     }
 
     getURL(){
-        let name;
+        console.log(this.props.location)
+        let name, location;
         if(this.props.name){
             name = (this.props.name.split(' ')).join('_');
         }
-        let location = '';
-        let url = `${API_URL}${name ? `&by_name=${name}` : ''}${location}`;
+
+        if(this.props.location){
+            location = (this.props.location.split(' ')).join('_').toLowerCase();
+        }
+
+        let url = `${API_URL}${name ? `&by_name=${name}` : ''}${this.props.type ? `&by_type=${this.props.type}` : ''}${location ? `&by_city=${location}` : ''}${this.props.position ? `&by_dist=${this.props.position}` : ''}`;
+        console.log(url)
         return url;
     }
 
@@ -83,8 +91,15 @@ class Breweries extends Component{
         const state = this.state;
 
         const breweries = state.breweryList.slice((state.currentPage-1)*5, state.currentPage*5);
-        //console.log(this.state.breweryList)
-        //console.log(breweries);
+        
+        if(!breweries.length){
+            return (
+                <div className="breweries__no-result">
+                    <p className="material-icons">sentiment_very_dissatisfied</p>
+                    <p>We are sorry, we did not find any result, try again !</p>
+                </div>
+            );
+        }
 
         result = breweries.map((item, index) => {
             return(
@@ -120,14 +135,20 @@ class Breweries extends Component{
 
     render() {        
         const state = this.state;
+        console.log(this.props)
 
-        if(this.props.name !== state.breweryName){
+        if((this.props.name !== state.breweryName) || (this.props.type !== state.breweryType)
+            || (this.props.location !== state.breweryLocation) || (this.props.position !== state.userPosition)){
+            console.log('update')
             this.getBrews()
             .then( res => this.setState({ 
                 breweryList: res,
                 currentPage: 1,
                 totalPages: Math.ceil(res.length/5),
                 breweryName: this.props.name,
+                breweryType: this.props.type,
+                breweryLocation: this.props.location,
+                userPosition: this.props.position,
             }))
             .catch( error => console.error(error))
         }
@@ -135,7 +156,7 @@ class Breweries extends Component{
         const results = this.generateResults();
 
         return(
-            <div className="breweries" key={this.props.name}>
+            <div className="breweries" name={this.props.name} type={this.props.type}>
 
                 {results}
 

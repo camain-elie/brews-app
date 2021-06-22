@@ -7,8 +7,20 @@ class Options extends Component {
         super(props);
 
         this.state = {
-            value: ''
+            location: '',
+            breweryType: '',
+            position: false,
         }
+    }
+
+    handleLocation(event){
+        this.setState({ location: event.target.value });
+        this.props.handleLocation(event);
+    }
+
+    handlePositionClick(){
+        this.setState({ position: !this.state.position });
+        this.props.handlePositionClick();
     }
 
     render(){
@@ -16,15 +28,19 @@ class Options extends Component {
             <div className="options">
                 <div className="options__group">
                     <p className="options__name">BREWERY TYPE</p>
-                    <select value={this.state.value} onChange={() => console.log('change')} >
+                    <select value={this.state.breweryType} onChange={e => {
+                            this.setState({ breweryType: e.target.value })
+                            this.props.handleTypeChange(e)
+                        }}
+                    >
                         <option value="">All</option>
                         <option value="micro">Micro</option>
                         <option value="nano">Nano</option>
                         <option value="regional">Regional</option>
                         <option value="brewpub">Brewpub</option>
                         <option value="large">Large</option>
-                        <option value="planning">Not yet opened</option>
-                        <option value="constract">On contract brewery</option>
+                        <option value="planning">Not opened yet</option>
+                        <option value="contract">On contract brewery</option>
                         <option value="proprietor">Proprietor</option>
                         <option value="closed">Closed</option>
                     </select>
@@ -33,16 +49,21 @@ class Options extends Component {
                 <div className="options__group">
                     <p className="options__name">LOCATION</p>
                     <div className="options__input">
-                        <p className={`material-icons options__label${this.state.value !== "" ? "--text" : ""}`}>public</p>
-                        <input type="text" placeholder="City, state, zip code or country" value={this.state.value} onChange={e => this.setState({value: e.target.value})} />
-                        <p className="material-icons options__position" onClick={() => console.log('gps')} >gps_fixed</p>
+                        <p className={`material-icons options__label${this.state.location !== "" ? "--text" : ""}`}>public</p>
+                        <input type="text" placeholder="Enter a city" value={this.state.location} 
+                            onChange={e => {
+                                this.setState({location: e.target.value});
+                                this.props.handleLocation(e);
+                            }} 
+                        />
+                        <p className={`material-icons options__position${this.state.position ? '--active' : ''}`} onClick={() => this.handlePositionClick()} >gps_fixed</p>
                     </div>
 
-                    <div className="options__radio" onChange={event => console.log(event.target.value)}>
-                        <div><input type="radio" value="london" name="location" />London</div>
-                        <div><input type="radio" value="edimburgh" name="location" />Edimburgh</div>
-                        <div><input type="radio" value="new_york" name="location" />New York</div>
-                        <div><input type="radio" value="los_angeles" name="location" />Los Angeles</div>
+                    <div className="options__radio" >
+                        <div><input onChange={event => this.handleLocation(event)} type="radio" value="London" name="location" checked={this.state.location === 'London'} />London</div>
+                        <div><input onChange={event => this.handleLocation(event)} type="radio" value="Dublin" name="location" checked={this.state.location === 'Dublin'} />Dublin</div>
+                        <div><input onChange={event => this.handleLocation(event)} type="radio" value="New York" name="location" checked={this.state.location === 'New York'} />New York</div>
+                        <div><input onChange={event => this.handleLocation(event)} type="radio" value="Los Angeles" name="location" checked={this.state.location === 'Los Angeles'} />Los Angeles</div>
                     </div>
                 </div>
             </div>

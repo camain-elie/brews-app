@@ -27,10 +27,15 @@ class SearchBrew extends Component {
         super(props);
 
         this.handleSearch = this.handleSearch.bind(this);
+        this.handleTypeChange = this.handleTypeChange.bind(this);
+        this.handleLocation = this.handleLocation.bind(this);
+        this.handlePositionClick = this.handlePositionClick.bind(this);
 
         this.state = {
             breweryName: '',
             location: '',
+            breweryType: '',
+            position: '',
         };
 
     }
@@ -42,11 +47,41 @@ class SearchBrew extends Component {
         console.log(value);
     }
 
-    /*componentDidMount(){
-        console.log('did mount');
-        getBrews();
+    handleTypeChange(event){
+        console.log(event.target.value);
+        this.setState({
+            breweryType: event.target.value,
+        })
+    }
+
+    handleLocation(event){
+        this.setState({ location: event.target.value})
+        console.log(event.target.value);
+    }
+
+    handlePositionClick(){
+        if(this.state.position){
+            this.setState({ position: '' });
+        }else{
+            this.setUserPosition();
+        }
         
-    }*/
+    }
+
+    setUserPosition(){
+        try{
+            navigator.geolocation.getCurrentPosition(
+                ((position) => {
+                    let pos = position.coords.latitude + ',' + position.coords.longitude;
+                    this.setState({ position: pos });
+                }),
+                error => console.error(error)
+            )
+        } catch(error){
+            console.log(error);
+            this.setState({ position: '36,-120' });
+        }
+    }
 
     render(){
 
@@ -57,8 +92,17 @@ class SearchBrew extends Component {
                 <Search handleSearch={this.handleSearch} />
                 <div className="search-brew__content" >
 
-                    <Options />
-                    <Breweries name={this.state.breweryName} />
+                    <Options 
+                        handleTypeChange={this.handleTypeChange}
+                        handleLocation={this.handleLocation}
+                        handlePositionClick={this.handlePositionClick}    
+                    />
+                    <Breweries
+                        name={this.state.breweryName}
+                        location={this.state.location}
+                        type={this.state.breweryType}
+                        position={this.state.position}
+                    />
 
                 </div>
         

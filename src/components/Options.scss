@@ -49,9 +49,6 @@
     }
 
     &__icon{
-        position: relative;
-        //top: 6px;
-        $color: red;
     }
 
     &__label{
@@ -71,6 +68,11 @@
         }
         &:active{
             color: darken($background-color, 15%);
+        }
+
+        &--active{
+            color: rgb(223, 109, 109);
+            cursor: pointer;
         }
     }
 }
