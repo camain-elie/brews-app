@@ -3,6 +3,7 @@
 
 .pages{
     display: flex;
+    justify-content: center;
     user-select: none;
 
     &__arrow, &__number, &__more{

@@ -105,8 +105,9 @@ class Breweries extends Component{
             return(
                 <Link className="breweries__element" key={index} to={`/brewery/${item.id}`}>
                 
-                        <p className="material-icons breweries__image" >sports_bar</p>
+                    <p className="material-icons breweries__image" >sports_bar</p>
 
+                    <div className="breweries__wrapper">
                         <div className="breweries__description">
 
                             <p>{item.name}</p>
@@ -125,6 +126,7 @@ class Breweries extends Component{
                             </p>
 
                         </div>
+                    </div>
                   
                 </Link>
             );

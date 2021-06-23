@@ -56,7 +56,7 @@ class Options extends Component {
                                 this.props.handleLocation(e);
                             }} 
                         />
-                        <p className={`material-icons options__position${this.state.position ? '--active' : ''}`} onClick={() => this.handlePositionClick()} >gps_fixed</p>
+                        <p className={`material-icons options__position${this.props.position ? '--active' : ''}`} onClick={() => this.handlePositionClick()} >gps_fixed</p>
                     </div>
 
                     <div className="options__radio" >

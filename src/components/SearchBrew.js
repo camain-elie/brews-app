@@ -95,7 +95,8 @@ class SearchBrew extends Component {
                     <Options 
                         handleTypeChange={this.handleTypeChange}
                         handleLocation={this.handleLocation}
-                        handlePositionClick={this.handlePositionClick}    
+                        handlePositionClick={this.handlePositionClick}
+                        position={this.state.position}   
                     />
                     <Breweries
                         name={this.state.breweryName}
