@@ -6,16 +6,9 @@
   text-align: center;
   margin: auto;
   padding: 0 15px;
-  max-width: 1600px;
+  max-width: 1400px;
 }
 
 a{
   text-decoration: none;
-}
-
-@media(min-width: 800px){
-  .App{
-
-    max-width: 1300px;
-  }
 }

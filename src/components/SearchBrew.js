@@ -6,22 +6,6 @@ import Breweries from './Breweries';
 
 import './SearchBrew.scss';
 
-
-/*const getBreweryData = async (breweryId) => {
-    //const response = await fetch(`${URL}${breweryId}`);
-    const response = await fetch(`https://api.allorigins.win/raw?url=https://api.openbrewerydb.org/breweries/9387`);
-    console.log(response);
-    const data = await response.json();
-    console.log(data);
-
-}*/
-
-/*const getBrews = async () => {
-    const response = await fetch("https://api.openbrewerydb.org/breweries");
-    const json = await response.json();
-    console.log(json);
-}*/
-
 class SearchBrew extends Component {
     constructor(props){
         super(props);
@@ -37,26 +21,21 @@ class SearchBrew extends Component {
             breweryType: '',
             position: '',
         };
-
     }
 
     handleSearch (e, value) {
         e.preventDefault();
         this.setState({ breweryName: value });
-        console.log('search');
-        console.log(value);
     }
 
     handleTypeChange(event){
-        console.log(event.target.value);
         this.setState({
             breweryType: event.target.value,
-        })
+        });
     }
 
     handleLocation(event){
-        this.setState({ location: event.target.value})
-        console.log(event.target.value);
+        this.setState({ location: event.target.value});
     }
 
     handlePositionClick(){
@@ -65,7 +44,6 @@ class SearchBrew extends Component {
         }else{
             this.setUserPosition();
         }
-        
     }
 
     setUserPosition(){
@@ -76,7 +54,7 @@ class SearchBrew extends Component {
                     this.setState({ position: pos });
                 }),
                 error => console.error(error)
-            )
+            );
         } catch(error){
             console.log(error);
             this.setState({ position: '36,-120' });
@@ -84,12 +62,11 @@ class SearchBrew extends Component {
     }
 
     render(){
-
-
         return(
             <div className="search-brew">
                 
                 <Search handleSearch={this.handleSearch} />
+                
                 <div className="search-brew__content" >
 
                     <Options 

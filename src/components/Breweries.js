@@ -95,7 +95,7 @@ class Breweries extends Component{
         if(!breweries.length){
             return (
                 <div className="breweries__no-result">
-                    <p className="material-icons">sentiment_very_dissatisfied</p>
+                    <p className="material-icons breweries__smiley">sentiment_very_dissatisfied</p>
                     <p>We are sorry, we did not find any result, try again !</p>
                 </div>
             );

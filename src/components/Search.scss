@@ -11,6 +11,7 @@
     display: flex;
 
     &__input{
+        min-width: 200px;
         width: 65%;
         height: 50px;
         border-radius: 4px;
@@ -20,6 +21,7 @@
         padding: 3px;
         
         form{
+
             width: 100%;
             display: flex;
             justify-content: space-between;
@@ -69,5 +71,11 @@
         &--text{
             color: $font-color;
         }
+    }
+}
+
+@media (max-width: 800px){
+    .search__input{
+        width: 95%;
     }
 }

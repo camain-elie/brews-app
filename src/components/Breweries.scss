@@ -50,6 +50,7 @@
         color: $clear-font-color;
         font-size: 0.9rem;
         margin: 0;
+        margin-right: 20px;
 
         span{
             margin-right: 5px;
@@ -61,11 +62,14 @@
 
     &__info{
         display: flex;
-        margin: 10px;        
+        margin: 0 0 10px 10px;        
     }
 
-    
+    &__smiley.material-icons{
+        font-size: 3rem;
+    }    
 }
+
 
 @media (min-width: 800px){
     .breweries{
@@ -75,10 +79,21 @@
             display: flex;
             justify-content: space-between;
             align-content: space-between;
+            width: 100%;
+        }
+    }
+}
+
+@media (min-width: 500px){
+    .breweries{
+
+        &__wrapper{
+            flex-wrap: wrap;
         }
 
-        &__icon{
-            margin-left: 40px;
+        &__info{
+            align-self: flex-end;
+            
         }
     }
 }

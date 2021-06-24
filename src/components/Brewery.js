@@ -51,7 +51,7 @@ class Brewery extends Component {
 
     render(){
 
-        //console.log(this.state.breweryId);
+    
 
 
         const state = this.state;
@@ -123,8 +123,14 @@ class Brewery extends Component {
                                 </p>
                             </div>
                             
+                            
+                            <div className="brewery__website">
+                                {this.state.data.website_url ? 
+                                    (<iframe title="Brewery's website" src={this.state.data.website_url}></iframe>) :
+                                    (<p>It looks like this brewery does not have any website !</p>)
+                                }
+                            </div>
 
-                            {/*renderedWebsite*/}
                         </div>
                         </div>
                     )

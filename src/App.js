@@ -15,7 +15,6 @@ function App() {
       <Header />
 
       <BrowserRouter>
-
         <Switch>
           <Route exact path="/">
             <SearchBrew />
