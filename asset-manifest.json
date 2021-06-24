@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/brews-app/static/css/main.fe270be8.chunk.css",
+    "main.js": "/brews-app/static/js/main.9e704e31.chunk.js",
+    "main.js.map": "/brews-app/static/js/main.9e704e31.chunk.js.map",
+    "runtime-main.js": "/brews-app/static/js/runtime-main.6f8ccce0.js",
+    "runtime-main.js.map": "/brews-app/static/js/runtime-main.6f8ccce0.js.map",
+    "static/js/2.4a914c69.chunk.js": "/brews-app/static/js/2.4a914c69.chunk.js",
+    "static/js/2.4a914c69.chunk.js.map": "/brews-app/static/js/2.4a914c69.chunk.js.map",
+    "index.html": "/brews-app/index.html",
+    "static/css/main.fe270be8.chunk.css.map": "/brews-app/static/css/main.fe270be8.chunk.css.map",
+    "static/js/2.4a914c69.chunk.js.LICENSE.txt": "/brews-app/static/js/2.4a914c69.chunk.js.LICENSE.txt",
+    "static/media/Search.scss": "/brews-app/static/media/backgroundImg.88955ec1.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6f8ccce0.js",
+    "static/js/2.4a914c69.chunk.js",
+    "static/css/main.fe270be8.chunk.css",
+    "static/js/main.9e704e31.chunk.js"
+  ]
+}
