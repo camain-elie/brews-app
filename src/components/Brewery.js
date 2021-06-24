@@ -6,105 +6,71 @@ import './Brewery.scss';
 
 const URL = "https://api.openbrewerydb.org/breweries/";
 
-/*class Brewery extends Component {
-
-
-    render () {
-        let { breweryId } = useParams();
-
-        return(
-            <div className="brewery">
-                Brewery
-                {breweryId}
-                <Link to="/">Go back</Link>
-            </div>
-        );
-    }
-}*/
-
 const getBreweryData = async (breweryId) => {
     const response = await fetch(`${URL}${breweryId}`);
     const data = await response.json();
     return data;
 }
 
-
 class Brewery extends Component {
     constructor(props){
         super(props);
 
-        
-
         this.state = {
-            isLoading: true,
-        }
+            isLoading: false,
+        };
     }
 
     componentDidMount(){
         const breweryId = this.props.match.params.breweryId;
         getBreweryData(breweryId)
         .then(res => {
-            this.setState({ data: res, isLoading: false })
+            this.setState({ data: res, isLoading: true })
         })
         .catch(error => console.error(error));
     }
 
     render(){
 
-    
-
-
         const state = this.state;
-        
-        /*let renderedWebsite;
-
-        if(!state.isLoading){
-            renderedWebsite = <iframe title="Brewery's website" width="300" height="200" src={state.data.website_url }></iframe>;
-            //console.log(renderedWebsite)
-            //renderedWebsite.console.log = function(){}
-            //renderedWebsite.contentWindow.console.log = function() {};
-        }*/
 
         return(
             <div className="brewery">
             
-                {state.isLoading ? '' :
-                    (<div className="brewery__page">
-                    <div className="brewery__side">
-                        <Link to="/">
-                            <p className="brewery__back"><span className="brewery__back-icon material-icons">trending_flat</span>Back to search</p>
-                        </Link>
+                {state.isLoading &&
+                    <div className="brewery__page">
+                        <div className="brewery__side">
+                            <Link to="/">
+                                <p className="brewery__back"><span className="brewery__back-icon material-icons">trending_flat</span>Back to search</p>
+                            </Link>
 
-                        <div className="brewery__contact">
-                            <h2>HOW TO CONTACT US</h2>
-                            {state.data.phone && 
-                                <p className=""><span className="material-icons brewery__icon">call</span> {state.data.phone}</p>
-                            }
-                            {state.data.website_url &&
-                                <a className="brewery__link" href={state.data.website_url} target="_blank" rel='noreferrer noopener' >{state.data.website_url}</a>
-                            }
-                            <div className="brewery__address">
-                                {state.data.street && <p>{state.data.street}</p>}
-                                {state.data.address_2 && <p>{state.data.address_2}</p>}
-                                {state.data.address_3 && <p>{state.data.address_3}</p>}
-                                {(state.data.postal_code || state.data.city) && <p>{state.data.postal_code + ' ' + state.data.city}</p>}
-                                <p>{state.data.state ? state.data.state + ', ' : ''}{state.data.country}</p>
+                            <div className="brewery__contact">
+                                <h2>HOW TO CONTACT US</h2>
+                                {state.data.phone && 
+                                    <p className=""><span className="material-icons brewery__icon">call</span> {state.data.phone}</p>
+                                }
+                                {state.data.website_url &&
+                                    <a className="brewery__link" href={state.data.website_url} target="_blank" rel='noreferrer noopener' >{state.data.website_url}</a>
+                                }
+                                <div className="brewery__address">
+                                    {state.data.street && <p>{state.data.street}</p>}
+                                    {state.data.address_2 && <p>{state.data.address_2}</p>}
+                                    {state.data.address_3 && <p>{state.data.address_3}</p>}
+                                    {(state.data.postal_code || state.data.city) && <p>{state.data.postal_code + ' ' + state.data.city}</p>}
+                                    <p>{state.data.state ? state.data.state + ', ' : ''}{state.data.country}</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     
-                    <div className="brewery__content">
+                        <div className="brewery__content">
 
                             <div className="brewery__name">
                                 <h1>{state.data.name}</h1>
                                 <p className="brewery__type">{state.data.brewery_type}</p>
                             </div>
 
-                            <p className="brewery__date"><span className="material-icons brewery__icon">schedule</span> {howLongAgo(state.data.updated_at)}</p>
-
-                            <div className="" >
-                            
-                            </div>
+                            <p className="brewery__icon-text"><span className="material-icons brewery__icon">schedule</span> {howLongAgo(state.data.updated_at)}</p>
+                            <p className="brewery__icon-text"><span className="material-icons brewery__icon">public</span> {state.data.city}{state.data.city && state.data.country ? " - " : ""}{state.data.country}</p>
 
                             <div className="brewery__description">
                                 <p className="brewery__description--note">Note : as the API does not provide a description for each brewery, the following description will be the same for every brewery.</p>
@@ -130,41 +96,12 @@ class Brewery extends Component {
                                     (<p>It looks like this brewery does not have any website !</p>)
                                 }
                             </div>
-
                         </div>
-                        </div>
-                    )
-
+                    </div>                    
                 }
-
-
             </div>
-        )
+        );
     }
 }
-
-
-/*function Brewery (props) {
-
-    let { breweryId } = useParams();
-    const [ breweryData, setBreweryData ] = useState({});
-
-    useEffect(() => {
-        console.log('use effect')
-        getBreweryData(breweryId)
-        .then(res => setBreweryData(res))
-        .catch(error => console.error(error))
-    });
-
-    console.log(breweryData);
-
-    return(
-        <div className="brewery">
-            Brewery
-            {breweryId}
-            <Link to="/">Go back</Link>
-        </div>
-    );
-}*/
 
 export default withRouter(Brewery);

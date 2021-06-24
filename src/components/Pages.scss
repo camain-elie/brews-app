@@ -33,9 +33,9 @@
             border-radius: 4px;
             margin: 5px;
             color: lighten($clear-font-color, 10%);
-
             display: flex;
             justify-content: center;
+
             p{
                 margin: auto 0;
             }
@@ -47,7 +47,6 @@
         border-color: $clear-font-color;
         font-family: 'Roboto', sans-serif;
         cursor: pointer;
-
         display: flex;
         justify-content: center;
 
@@ -55,7 +54,6 @@
             border-color: $background-color;
             background: $background-color;
             color: white;
-
             pointer-events: none;
         }
     }
@@ -69,5 +67,4 @@
         border-color: rgba(0, 0, 0, 0);
         color: $clear-font-color;
     }
-
 }

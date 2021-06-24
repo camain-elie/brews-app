@@ -8,11 +8,11 @@
 
 <div align="center">
   <h3>
-    <a href="https://camain-elie.github.io/jobs-app/">
+    <a href="https://camain-elie.github.io/brews-app/">
       Demo
     </a>
     <span> | </span>
-    <a href="https://github.com/camain-elie/jobs-app">
+    <a href="https://github.com/camain-elie/brews-app">
       Solution
     </a>
     <span> | </span>
@@ -86,7 +86,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com) and [N
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/your-user-name/your-project-name
+$ git clone https://github.com/camain-elie/brews-app
 
 # Install dependencies
 $ npm install

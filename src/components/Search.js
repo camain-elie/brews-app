@@ -9,7 +9,6 @@ function Search (props) {
         <div className="search">
             
             <div className="search__input">
-                
                 <p className={`search__icon ${value ? 'search__icon--text' : ''} material-icons-outlined`}>sports_bar</p>
 
                 <form onSubmit={e => props.handleSearch(e, value)}>
@@ -17,7 +16,6 @@ function Search (props) {
                     <button type="submit" >Search</button>
                 </form>
             </div>
-
         </div>
     );
 }

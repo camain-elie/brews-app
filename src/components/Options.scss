@@ -47,9 +47,6 @@
         }
     }
 
-    &__icon{
-    }
-
     &__label{
         color: $clear-font-color;
 
@@ -92,7 +89,6 @@
 
 @media (min-width: 800px){
     .options{
-
         width: 30%;
         margin-right: 35px;
         margin-top: 50px;
@@ -100,7 +96,5 @@
         &__name{
             text-align: left;
         }
-
-
     }
 }

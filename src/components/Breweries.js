@@ -8,7 +8,6 @@ import './Breweries.scss';
 
 const API_URL = "https://api.openbrewerydb.org/breweries?per_page=50";
 
-
 class Breweries extends Component{
     constructor(props){
         super(props);
@@ -35,20 +34,7 @@ class Breweries extends Component{
             totalPages: Math.ceil(res.length/5),
         }))
         .catch( error => console.error(error))
-    }
-
-
-
-    /*componentDidUpdate(){
-        this.getBrews()
-        .then( res => this.setState({ 
-            breweryList: res,
-            currentPage: 1,
-            totalPages: Math.ceil(res.length/5),
-        }))
-        .catch( error => console.error(error))
-    }*/
-    
+    }    
 
     getBrews = async () => {
         const url = this.getURL();
@@ -58,18 +44,14 @@ class Breweries extends Component{
     }
 
     getURL(){
-        console.log(this.props.location)
         let name, location;
         if(this.props.name){
             name = (this.props.name.split(' ')).join('_');
         }
-
         if(this.props.location){
             location = (this.props.location.split(' ')).join('_').toLowerCase();
         }
-
         let url = `${API_URL}${name ? `&by_name=${name}` : ''}${this.props.type ? `&by_type=${this.props.type}` : ''}${location ? `&by_city=${location}` : ''}${this.props.position ? `&by_dist=${this.props.position}` : ''}`;
-        console.log(url)
         return url;
     }
 
@@ -96,7 +78,7 @@ class Breweries extends Component{
             return (
                 <div className="breweries__no-result">
                     <p className="material-icons breweries__smiley">sentiment_very_dissatisfied</p>
-                    <p>We are sorry, we did not find any result, try again !</p>
+                    <p>We are sorry, we did not find any result matching your parameters, try again !</p>
                 </div>
             );
         }
@@ -127,7 +109,7 @@ class Breweries extends Component{
 
                         </div>
                     </div>
-                  
+
                 </Link>
             );
         });
@@ -135,13 +117,13 @@ class Breweries extends Component{
         return result;
     }
 
-    render() {        
+    render() {    
+
         const state = this.state;
-        console.log(this.props)
 
         if((this.props.name !== state.breweryName) || (this.props.type !== state.breweryType)
             || (this.props.location !== state.breweryLocation) || (this.props.position !== state.userPosition)){
-            console.log('update')
+
             this.getBrews()
             .then( res => this.setState({ 
                 breweryList: res,

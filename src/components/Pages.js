@@ -1,7 +1,7 @@
 import './Pages.scss';
 
 function Pages(props){
-    
+
     if(props.totalPages < 2){
         return(
             <div className="pages"></div>
@@ -11,16 +11,7 @@ function Pages(props){
     const pageMin = 1;
     const pageMax = props.totalPages;
     const currentPage = props.currentPage;
-
     let buttonTab = [];
-
-
-    /*char: <p className={`material-icons pages__icon
-            ${currentPage === 1 ? "pages__button--disabled" : ""}`}>
-                chevron_left
-            </p>,
-        action: () => console.log("+")
-        */
 
     for(let i = 1; i<=pageMax; i++){
         if((i===pageMin) || (i===pageMax) || (i >= currentPage-1 && i<= currentPage+1)){
@@ -30,15 +21,7 @@ function Pages(props){
                 buttonTab.push("...");
             }
         }
-
     }
-
-    /*buttonTab.push({
-        char: <p className={`material-icons pages__button
-            ${currentPage === pageMax ? "pages__button--disabled" : ""}`}>
-                chevron_right
-            </p>,
-        action: () => console.log("<")});*/
 
     return(
         <div className="pages">
@@ -56,7 +39,7 @@ function Pages(props){
                     <div className="pages__more" key={index} >
                         <p>{item}</p>
                     </div>
-                    )
+                    );
                 }
 
                 return(
@@ -66,7 +49,7 @@ function Pages(props){
                     >
                         <p>{item}</p>
                     </div>
-                )
+                );
             })}
 
             <div className={`pages__arrow${currentPage === pageMax ? "--disabled" : ""}`}

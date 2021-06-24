@@ -1,0 +1,10 @@
+@import '../assets/colors.scss';
+
+.not-found{
+    font-family: 'Poppins', sans-serif;
+    color: $font-color;
+
+    &__smiley.material-icons{
+        font-size: 3rem;
+    }
+}

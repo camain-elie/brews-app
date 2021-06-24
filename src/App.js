@@ -12,11 +12,13 @@ function App() {
   return (
     <div className="App">
 
-      <Header />
+      
 
       <BrowserRouter>
+        <Header />
+
         <Switch>
-          <Route exact path="/">
+          <Route exact path={["/","/brews-app"]}>
             <SearchBrew />
           </Route>
 

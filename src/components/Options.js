@@ -10,7 +10,7 @@ class Options extends Component {
             location: '',
             breweryType: '',
             position: false,
-        }
+        };
     }
 
     handleLocation(event){
@@ -67,7 +67,7 @@ class Options extends Component {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
 }
 
