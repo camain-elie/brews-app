@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import SearchBrew from './components/SearchBrew';
-import Brewery from './components/Brewery';
-import NotFound from './components/NotFound';
-import Header from './components/Header';
+import SearchBrew from './components/searchBrew/SearchBrew';
+import Brewery from './components/brewery/Brewery';
+import NotFound from './components/notFound/NotFound';
+import Header from './components/header/Header';
 
 import './App.scss';
 

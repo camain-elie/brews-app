@@ -1,8 +1,8 @@
 import { Component } from 'react';
 
-import Search from './Search';
-import Options from './Options';
-import Breweries from './Breweries';
+import Search from '../search/Search';
+import Options from '../options/Options';
+import Breweries from '../breweries/Breweries';
 
 import './SearchBrew.scss';
 

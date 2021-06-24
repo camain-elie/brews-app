@@ -1,6 +1,6 @@
 import { Link, withRouter } from 'react-router-dom';
 import { Component } from 'react';
-import { howLongAgo } from './Helpers';
+import { howLongAgo } from '../Helpers';
 
 import './Brewery.scss';
 

@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import Pages from './Pages';
-import { howLongAgo } from './Helpers';
+import Pages from '../pages/Pages';
+import { howLongAgo } from '../Helpers';
 
 import './Breweries.scss';
 

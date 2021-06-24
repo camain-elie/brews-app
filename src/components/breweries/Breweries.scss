@@ -1,4 +1,4 @@
-@import '../assets/colors.scss';
+@import '../../assets/colors.scss';
 
 .breweries{
     width: 100%;
@@ -23,7 +23,6 @@
         color: $clear-font-color;
         margin: 10px;
         text-align: center;
-        padding: auto;
         border: 1px solid $clear-font-color;
     }
     
