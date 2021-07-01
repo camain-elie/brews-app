@@ -1,8 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
+import { expect } from 'chai';
+
 import Breweries from './Breweries';
 
-it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<Breweries />, div);
+describe('<Breweries />', () => {
+    it('renders without crashing', () => {
+        const wrapper = shallow(<Breweries />);
+    });
 });
