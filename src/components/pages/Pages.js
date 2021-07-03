@@ -3,14 +3,21 @@ import './Pages.scss';
 function Pages(props){
 
     if(props.totalPages < 2){
-        return(
-            <div className="pages"></div>
-        );
+        return null;
     }
 
     const pageMin = 1;
     const pageMax = props.totalPages;
-    const currentPage = props.currentPage;
+    let currentPage = props.currentPage;
+    if(currentPage > pageMax){
+        currentPage = pageMax;
+    }
+    if(currentPage<1){
+        currentPage = 1;
+    }
+    if(!currentPage){
+        currentPage=1;
+    }
     let buttonTab = [];
 
     for(let i = 1; i<=pageMax; i++){
