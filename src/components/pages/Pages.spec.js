@@ -38,23 +38,35 @@ describe('<Pages />', () => {
         expect(wrapper.find('div.pages').children()).to.have.lengthOf(6);
         expect(wrapper.find('div.pages__number--current p')).to.have.text('1');
         expect(wrapper.find('div.pages__arrow--disabled p')).to.have.text('chevron_left');
-        //expect((wrapper.find('div.pages').children())[1]).to.have.className('pages__number--current')
 
         wrapper = shallow(<Pages totalPages={20} currentPage={20} changeOnePage={onClick} changeToPage={onClick} />);
         expect(wrapper.find('div.pages__number').children()).to.have.lengthOf(3);
         expect(wrapper.find('div.pages').children()).to.have.lengthOf(6);
         expect(wrapper.find('div.pages__number--current p')).to.have.text('20');
         expect(wrapper.find('div.pages__arrow--disabled p')).to.have.text('chevron_right');
-        const action = wrapper.findWhere( node => {
-            return (node.type() === 'p' && node.text() === "chevron_left");
-        });
-        action.simulate('click');
-        expect(onClick).to.have.property('callCount', 1)
 
         wrapper = shallow(<Pages totalPages={20} currentPage={10} />);
         expect(wrapper.find('div.pages__number').children()).to.have.lengthOf(5);
         expect(wrapper.find('div.pages').children()).to.have.lengthOf(9);
         expect(wrapper.find('div.pages__number--current p')).to.have.text('10');
         expect(wrapper.find('div.pages__arrow--disabled')).to.have.length(0);
+    });
+
+    it('change one page with the arrow buttons or multiple pages with the number buttons', () => {
+        const onePage = sinon.spy();
+        const toPage = sinon.spy();
+
+        const wrapper = shallow(<Pages totalPages={5} currentPage={3} changeOnePage={onePage} changeToPage={toPage} />);
+        let button = wrapper.findWhere(node => node.type() === 'p' && node.text() === "chevron_left");
+        button.parent().simulate('click');
+        expect(onePage).to.have.been.calledWith(-1);
+
+        button = wrapper.findWhere(node => node.type() === 'p' && node.text() === "chevron_right");
+        button.parent().simulate('click');
+        expect(onePage).to.have.been.calledWith(1);
+
+        button = wrapper.findWhere(node => node.type() === 'p' && node.text() === '5');
+        button.parent().simulate('click');
+        expect(toPage).to.have.been.called(5);
     });
 });
