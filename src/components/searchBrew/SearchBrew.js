@@ -24,7 +24,12 @@ class SearchBrew extends Component {
     }
 
     handleSearch (e, value) {
-        e.preventDefault();
+        console.log('callllllllllllllllllllllllllllled')
+        try{
+            e.preventDefault();
+        }catch(error){
+            console.error(error);
+        }
         this.setState({ breweryName: value });
     }
 

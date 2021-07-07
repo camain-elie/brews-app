@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, render, mount } from 'enzyme';
 import { expect } from 'chai';
 import sinon from 'sinon';
 
@@ -40,10 +40,30 @@ describe('<Options />', () => {
     });
     
     it('changes location with radio button', () => {
+        const handleLocationChange = sinon.spy();
+        const wrapper =
+            shallow(<Options handleLocation={handleLocationChange} />)
 
+        const radioTab = wrapper.find('.options__radio').children();
+        radioTab.forEach((div, index) =>{
+            const input = div.childAt(0);
+            input.simulate('change',
+                { target: { checked: !input.prop('checked') }});
+            radioTab[index] = input;
+        })
+        expect(radioTab).to.have.lengthOf(4);
+        expect(handleLocationChange).to.have.been.called.exactly(4);
     });
     
     it('retrieve user position when position button is clicked', () => {
+        const handlePositionClick = sinon.spy();
+        const wrapper = shallow(<Options handlePositionClick={handlePositionClick} position={false} />);
 
+        expect(wrapper.find('options__position--active')).to.have.lengthOf(0);
+        wrapper.find('.options__position').simulate('click');
+        wrapper.setProps({ position: true });
+
+        expect(handlePositionClick).to.have.been.called();
+        expect(wrapper.find('.options__position--active')).to.have.lengthOf(1);
     });
 });

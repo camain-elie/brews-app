@@ -5,7 +5,7 @@ export function howLongAgo(date){
     const isPast = duration > 0;
     duration = Math.abs(duration);
 
-    if(!(date instanceof Date)){
+    if(!Number.isInteger(duration)){
         return "Invalid date";
     }
     
