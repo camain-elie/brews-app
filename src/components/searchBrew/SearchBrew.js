@@ -24,7 +24,6 @@ class SearchBrew extends Component {
     }
 
     handleSearch (e, value) {
-        console.log('callllllllllllllllllllllllllllled')
         try{
             e.preventDefault();
         }catch(error){
@@ -55,6 +54,7 @@ class SearchBrew extends Component {
         try{
             navigator.geolocation.getCurrentPosition(
                 ((position) => {
+                    console.log(position)
                     let pos = position.coords.latitude + ',' + position.coords.longitude;
                     this.setState({ position: pos });
                 }),

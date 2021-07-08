@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { expect } from 'chai';
 import sinon from 'sinon';
 
@@ -12,63 +12,131 @@ describe('<SearchBrew />', () => {
         const wrapper = shallow(<SearchBrew />);
     });
 
-    it('updates breweryName in state when a search is submitted', () => {
+    it('calls handleSearch and updates the state when a search is submitted', () => {
         const wrapper = shallow(<SearchBrew />);
         const search = wrapper.find(Search).dive();
-        //const spy = jest.spyOn(wrapper.instance(), 'handleSearch');
 
-        expect(wrapper.state().name).to.be.undefined()
-
-        const spy = sinon.spy(wrapper.instance(), 'handleSearch');
+        expect(wrapper.state().breweryName).to.equal('');
 
         search.find('input').simulate('change', { target: { value: 'brewery' } });
         search.find('form').simulate('submit');
 
-        wrapper.instance().handleSearch();
-
-        expect(search.find('input').prop('value')).to.equal('brewery');
-
-        //expect(spy).to.have.been.called();
-
-
-        wrapper.instance().handleSearch.restore()
-
-        /*const instance = wrapper.instance();
-        sinon.spy(instance, 'handleSearch');
-        //instance.handleSearch({}, 'brewery')
-
-        //const handleSearch = sinon.spy(wrapper.instance(), "handleSearch");
-        //instance.handleSearch({}, 'brewery')
-        wrapper.update();
-        expect(instance.handleSearch).to.have.been.called();
-        wrapper.update();
-        instance.handleSearch.restore();
-
-        search.find('input').simulate('change', { target: { value: 'brewery' } });
-        search.find('form').simulate('submit');
-        expect(wrapper.state().name).to.equal('brewery');*/
+        expect(wrapper.state().breweryName).to.equal('brewery');
     });
 
     it('updates breweryType in state when type is changed in Options', () => {
         const wrapper = shallow(<SearchBrew />);
         const options = wrapper.find(Options).dive();
 
-        
+        expect(wrapper.state().breweryType).to.equal("");
+
+        options.find('select').simulate('change', { target: { value: 'micro' } });
+
+        expect(wrapper.state().breweryType).to.equal('micro');
     });
     
     it('updates the location in state when location is changed in Options', () => {
+        const wrapper = shallow(<SearchBrew />);
+        const options = wrapper.find(Options).dive();
 
+        expect(wrapper.state().location).to.equal('');
+
+        options.find('.options__input input').simulate('change', { target: { value: 'London' } });
+        expect(wrapper.state().location).to.equal('London');
+
+        options.find('.options__radio').childAt(2).childAt(0).simulate('change',
+            {  
+                target:
+                    {
+                        value: 'New York',
+                        checked: true
+                    } 
+            });
+        expect(wrapper.state().location).to.equal('New York');
     });
     
-    it('get user position and updates it in state when click on button', () => {
+    it('gets user position and updates it in state when click on button', () => {
+        const wrapper = shallow(<SearchBrew />);
+        const options = wrapper.find(Options).dive();
 
+        expect(wrapper.state().position).to.equal('');
+        expect(options.find('.options__position--active')).to.have.lengthOf(0);
+
+        options.find('.options__position').simulate('click');
+        expect(wrapper.state().position).to.equal('36,-120');
+        expect(wrapper.find(Options).prop('position')).to.equal('36,-120');
+        options.setProps({ position: '36,-120' })
+        expect(options.find('.options__position--active')).to.have.lengthOf(1);
+
+        options.find('.options__position--active').simulate('click');
+        expect(wrapper.state().position).to.equal('');
+        options.setProps({ position: '' })
+        expect(options.find('.options__position--active')).to.have.lengthOf(0);
     });
     
-    it('', () => {
+    it('tests with true user pos func', () => {
 
-    });
-    
-    it('', () => {
+        /*const getCurrentPosition = (success, fail) => {
+            const position =
+                {
+                    coords: {
+                        latitude: 100,
+                        longitude: -100,
+                    }
+                };
 
+            try{
+                success(position)
+            } catch(error){
+                fail(error)
+            }
+        };
+
+
+        const mockGeolocation = {
+            getCurrentPosition: getCurrentPosition,
+        };
+
+        global.navigator.geolocation = mockGeolocation;
+
+        const pos = navigator.geolocation.getCurrentPosition(
+            pos => console.log(pos),
+            error => console.error(error)
+        );*/
+
+        const mockGeolocation = {
+            getCurrentPosition: jest.fn()
+              .mockImplementationOnce((success) => Promise.resolve(success({
+                coords: {
+                  latitude: 100,
+                  longitude: -100
+                }
+              })))
+          };
+          global.navigator.geolocation = mockGeolocation;
+
+        const wrapper = shallow(<SearchBrew />);
+        const options = wrapper.find(Options).dive();
+
+        expect(wrapper.state().position).to.equal('');
+        expect(options.find('.options__position--active')).to.have.lengthOf(0);
+
+        options.find('.options__position').simulate('click');
+        expect(wrapper.state().position).to.equal('100,-100');
+
+        /*expect(wrapper.find(Options).prop('position')).to.equal('36,-120');
+        options.setProps({ position: '36,-120' })
+        expect(options.find('.options__position--active')).to.have.lengthOf(1);
+
+        options.find('.options__position--active').simulate('click');
+        expect(wrapper.state().position).to.equal('');
+        options.setProps({ position: '' })
+        expect(options.find('.options__position--active')).to.have.lengthOf(0);
+
+        options.find('.options__position').simulate('click');
+        expect(wrapper.state().position).to.equal('100,-100');
+        expect(wrapper.find(Options).prop('position')).to.equal('36,-120');
+        options.setProps({ position: '36,-120' })
+        expect(options.find('.options__position--active')).to.have.lengthOf(1);*/
     });
 });
