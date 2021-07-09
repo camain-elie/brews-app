@@ -25,9 +25,17 @@ class Brewery extends Component {
         const breweryId = this.props.match.params.breweryId;
         getBreweryData(breweryId)
         .then(res => {
-            this.setState({ data: res, isLoading: true })
+            if(!res.id){
+                console.error(res)
+                this.props.history.push("/brewery_not_found")
+            }else{
+                this.setState({ data: res, isLoading: true })
+            }
         })
-        .catch(error => console.error(error));
+        .catch(error => {
+            console.error(error)
+            this.props.history.push("/brewery_not_found")
+        });
     }
 
     render(){

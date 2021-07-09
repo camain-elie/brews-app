@@ -27,7 +27,7 @@ class SearchBrew extends Component {
         try{
             e.preventDefault();
         }catch(error){
-            console.error(error);
+
         }
         this.setState({ breweryName: value });
     }
@@ -54,14 +54,12 @@ class SearchBrew extends Component {
         try{
             navigator.geolocation.getCurrentPosition(
                 ((position) => {
-                    console.log(position)
                     let pos = position.coords.latitude + ',' + position.coords.longitude;
                     this.setState({ position: pos });
                 }),
                 error => console.error(error)
             );
         } catch(error){
-            console.log(error);
             this.setState({ position: '36,-120' });
         }
     }

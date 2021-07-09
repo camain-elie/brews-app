@@ -8,6 +8,10 @@ import Brewery from './Brewery';
 describe('<Brewery />', () => {
     it('renders without crashing', () => {
         const wrapper = shallow(<Brewery />);
+
+    });
+
+    it('renders without crashing', () => {
         const wr = mount(
             <BrowserRouter >
                 <Brewery />
@@ -17,5 +21,22 @@ describe('<Brewery />', () => {
             <BrowserRouter history='/'>
                 <Brewery />
             </BrowserRouter>);
+
+    });
+
+    it('', () => {
+
+    });
+
+    it('', () => {
+
+    });
+    
+    it('', () => {
+
+    });
+    
+    it('', () => {
+
     });
 });

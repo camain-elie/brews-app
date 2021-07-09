@@ -76,35 +76,7 @@ describe('<SearchBrew />', () => {
     
     it('tests with true user pos func', () => {
 
-        /*const getCurrentPosition = (success, fail) => {
-            const position =
-                {
-                    coords: {
-                        latitude: 100,
-                        longitude: -100,
-                    }
-                };
-
-            try{
-                success(position)
-            } catch(error){
-                fail(error)
-            }
-        };
-
-
-        const mockGeolocation = {
-            getCurrentPosition: getCurrentPosition,
-        };
-
-        global.navigator.geolocation = mockGeolocation;
-
-        const pos = navigator.geolocation.getCurrentPosition(
-            pos => console.log(pos),
-            error => console.error(error)
-        );*/
-
-        const mockGeolocation = {
+        let mockGeolocation = {
             getCurrentPosition: jest.fn()
               .mockImplementationOnce((success) => Promise.resolve(success({
                 coords: {
@@ -115,28 +87,13 @@ describe('<SearchBrew />', () => {
           };
           global.navigator.geolocation = mockGeolocation;
 
-        const wrapper = shallow(<SearchBrew />);
-        const options = wrapper.find(Options).dive();
+        let wrapper = shallow(<SearchBrew />);
+        let options = wrapper.find(Options).dive();
 
         expect(wrapper.state().position).to.equal('');
         expect(options.find('.options__position--active')).to.have.lengthOf(0);
 
         options.find('.options__position').simulate('click');
         expect(wrapper.state().position).to.equal('100,-100');
-
-        /*expect(wrapper.find(Options).prop('position')).to.equal('36,-120');
-        options.setProps({ position: '36,-120' })
-        expect(options.find('.options__position--active')).to.have.lengthOf(1);
-
-        options.find('.options__position--active').simulate('click');
-        expect(wrapper.state().position).to.equal('');
-        options.setProps({ position: '' })
-        expect(options.find('.options__position--active')).to.have.lengthOf(0);
-
-        options.find('.options__position').simulate('click');
-        expect(wrapper.state().position).to.equal('100,-100');
-        expect(wrapper.find(Options).prop('position')).to.equal('36,-120');
-        options.setProps({ position: '36,-120' })
-        expect(options.find('.options__position--active')).to.have.lengthOf(1);*/
     });
 });
