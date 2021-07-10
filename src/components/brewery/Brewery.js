@@ -17,7 +17,7 @@ class Brewery extends Component {
         super(props);
 
         this.state = {
-            isLoading: false,
+            isLoading: true,
         };
     }
 
@@ -29,7 +29,7 @@ class Brewery extends Component {
                 console.error(res)
                 this.props.history.push("/brewery_not_found")
             }else{
-                this.setState({ data: res, isLoading: true })
+                this.setState({ data: res, isLoading: false })
             }
         })
         .catch(error => {
@@ -45,7 +45,7 @@ class Brewery extends Component {
         return(
             <div className="brewery">
             
-                {state.isLoading &&
+                {!state.isLoading &&
                     <div className="brewery__page">
                         <div className="brewery__side">
                             <Link to="/">

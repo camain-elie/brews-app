@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import './Pages.scss';
 
 function Pages(props){
@@ -67,6 +69,13 @@ function Pages(props){
             </div>     
         </div>
     );
+}
+
+Pages.propTypes = {
+    //totalPages: ,
+    //currentPage: ,
+    changeOnePage: PropTypes.func.isRequired,
+    changeToPage: PropTypes.func.isRequired,
 }
 
 export default Pages;

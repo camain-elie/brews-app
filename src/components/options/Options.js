@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './Options.scss';
 
@@ -66,5 +67,15 @@ class Options extends Component {
     }
 }
 
+Options.propTypes = {
+    handleLocation: PropTypes.func.isRequired,
+    handleTypeChange: PropTypes.func.isRequired,
+    handlePositionClick: PropTypes.func.isRequired,
+    position: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.bool,
+        PropTypes.number,
+    ]),
+}
 
 export default Options;

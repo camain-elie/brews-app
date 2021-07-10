@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Pages from '../pages/Pages';
 import { howLongAgo } from '../Helpers';
@@ -120,7 +121,7 @@ class Breweries extends Component{
     render() {    
 
         const state = this.state;
-
+        
         if((this.props.name !== state.breweryName) || (this.props.type !== state.breweryType)
             || (this.props.location !== state.breweryLocation) || (this.props.position !== state.userPosition)){
 
@@ -153,6 +154,24 @@ class Breweries extends Component{
             </div>
         )
     };
+}
+
+Breweries.propTypes = {
+    name: PropTypes.string,
+    type: PropTypes.oneOf([
+        '',
+        'micro',
+        'nano',
+        'regional',
+        'brewpub',
+        'large',
+        'planning',
+        'contract',
+        'proprietor',
+        'closed'
+    ]),
+    location: PropTypes.string,
+    position: PropTypes.string,
 }
 
 export default Breweries;
