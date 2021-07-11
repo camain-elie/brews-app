@@ -72,8 +72,35 @@ function Pages(props){
 }
 
 Pages.propTypes = {
-    //totalPages: ,
-    //currentPage: ,
+    totalPages: function(props, propName, componentName){
+        if(props[propName] < 0){
+            return new Error(
+                'Invalid prop "' + propName + '" supplied to "' + componentName + '". "' +
+                propName + '" must be a positive Integer nunber.'
+            )
+        }
+        if(typeof props[propName] != 'number'){
+            return new Error(
+                'Invalid prop "' + propName + '" supplied to "' + componentName + '". "' +
+                propName + '" must be of type "Number".'
+            )
+        }
+    } ,
+    currentPage: function(props, propName, componentName){
+        if(typeof props[propName] != 'number'){
+            return new Error(
+                'Invalid prop "' + propName + '" supplied to "' + componentName + '". "' +
+                propName + '" must be of type "Number".'
+            )
+        }
+        if(props[propName] < 0 || props[propName] > props['totalPages']){
+
+            return new Error(
+                'Invalid prop "' + propName + '" supplied to "' + componentName + '". "' +
+                propName + '" must be between 0 and the value of "totalPages" prop.'
+            )
+        }
+    },
     changeOnePage: PropTypes.func.isRequired,
     changeToPage: PropTypes.func.isRequired,
 }

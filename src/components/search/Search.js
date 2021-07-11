@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import './Search.scss';
 
@@ -20,5 +21,8 @@ function Search (props) {
     );
 }
 
+Search.propTypes = {
+    handleSearch: PropTypes.func.isRequired,
+}
 
 export default Search;
