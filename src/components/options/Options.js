@@ -67,6 +67,13 @@ class Options extends Component {
     }
 }
 
+Options.defaultProps = {
+    handleLocation: event => console.log(event.target.value),
+    handleTypeChange: event => console.log(event.target.value),
+    handlePositionClick: event => console.log('Position element has been clicked on'),
+    position: false,
+}
+
 Options.propTypes = {
     handleLocation: PropTypes.func.isRequired,
     handleTypeChange: PropTypes.func.isRequired,

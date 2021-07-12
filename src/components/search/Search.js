@@ -21,6 +21,10 @@ function Search (props) {
     );
 }
 
+Search.defaultProps = {
+    handleSearch: (e, value) => console.log(value + ' submitted.'),
+}
+
 Search.propTypes = {
     handleSearch: PropTypes.func.isRequired,
 }

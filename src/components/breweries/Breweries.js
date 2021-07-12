@@ -156,6 +156,13 @@ class Breweries extends Component{
     };
 }
 
+Breweries.defaultProps = {
+    name: '',
+    type: '',
+    location: '',
+    position: '',
+}
+
 Breweries.propTypes = {
     name: PropTypes.string,
     type: PropTypes.oneOf([

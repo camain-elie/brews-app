@@ -71,6 +71,13 @@ function Pages(props){
     );
 }
 
+Pages.defaultProps = {
+    totalPages: 0,
+    currentPage: 0,
+    changeOnePage: (value) => console.log('page ' + value),
+    changeToPage: (value) => console.log('change to page ' + value),
+}
+
 Pages.propTypes = {
     totalPages: function(props, propName, componentName){
         if(props[propName] < 0){
